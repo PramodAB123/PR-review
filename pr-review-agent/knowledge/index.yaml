@@ -1,0 +1,7 @@
+knowledge:
+  - name: security-patterns
+    file: knowledge/security-patterns.md
+    description: "SQL injection, hardcoded secrets, missing auth, unhandled rejections"
+  - name: js-antipatterns
+    file: knowledge/js-antipatterns.md
+    description: "N+1 queries, empty catches, sync ops, console.log"

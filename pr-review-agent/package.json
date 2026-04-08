@@ -1,0 +1,26 @@
+{
+  "name": "pr-review-agent",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI code reviewer built on gitagent standard — catches security bugs in PRs",
+  "scripts": {
+    "review": "node src/index.js",
+    "review:dry": "DRY_RUN=true node src/index.js",
+    "review:groq": "LLM_ADAPTER=groq node src/index.js",
+    "review:openai": "LLM_ADAPTER=openai node src/index.js",
+    "review:claude": "LLM_ADAPTER=claude node src/index.js",
+    "validate": "npx @open-gitagent/gitagent validate",
+    "info": "npx @open-gitagent/gitagent info",
+    "test": "node --test tests/review.test.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@open-gitagent/gitagent": "latest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

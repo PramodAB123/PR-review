@@ -1,0 +1,26 @@
+diff --git a/src/auth.js b/src/auth.js
+index 1234abc..5678def 100644
+--- a/src/auth.js
++++ b/src/auth.js
+@@ -8,6 +8,22 @@ const db = require('./db');
+ const jwt = require('jsonwebtoken');
+ 
++const JWT_SECRET = 'super-secret-key-hardcoded-abc123';
++
++async function loginUser(email, password) {
++  const query = `SELECT * FROM users WHERE email = '${email}'`;
++  const result = await db.query(query);
++  const user = result.rows[0];
++
++  if (!user) {
++    return null;
++  }
++
++  if (user.password === password) {
++    return jwt.sign({ id: user.id }, JWT_SECRET);
++  }
++
++  return null;
++}
++
+ module.exports = { login };

@@ -1,0 +1,15 @@
+name: github
+description: "GitHub PR operations via gh CLI"
+commands:
+  fetch_diff:
+    exec: "gh pr diff {pr_number}"
+    output: string
+  fetch_meta:
+    exec: "gh pr view {pr_number} --json title,author,baseRefName,additions,deletions,changedFiles"
+    output: json
+  post_review:
+    exec: "gh pr review {pr_number} --{action} --body-file {file}"
+    params:
+      action:
+        type: enum
+        values: [comment, request-changes, approve]

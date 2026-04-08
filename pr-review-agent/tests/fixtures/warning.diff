@@ -1,0 +1,25 @@
+diff --git a/src/orders.js b/src/orders.js
+index aaaaaaa..bbbbbbb 100644
+--- a/src/orders.js
++++ b/src/orders.js
+@@ -3,6 +3,20 @@ const db = require('./db');
+ 
++async function getOrdersWithProducts(orderIds) {
++  const orders = await db.query(
++    'SELECT * FROM orders WHERE id = ANY($1)',
++    [orderIds]
++  );
++
++  for (const order of orders.rows) {
++    const products = await db.query(
++      'SELECT * FROM products WHERE order_id = $1',
++      [order.id]
++    );
++    order.products = products.rows;
++    console.log('Fetched products for order', order.id);
++  }
++
++  return orders.rows;
++}
++
+ module.exports = { getOrders };

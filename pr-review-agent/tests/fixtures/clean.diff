@@ -1,0 +1,24 @@
+diff --git a/src/utils.js b/src/utils.js
+index ccccccc..ddddddd 100644
+--- a/src/utils.js
++++ b/src/utils.js
+@@ -1,3 +1,16 @@
++/**
++ * Paginates an array.
++ * @param {Array} arr
++ * @param {number} page - 1-indexed page number
++ * @param {number} size - items per page
++ * @returns {Array}
++ */
++function paginate(arr, page = 1, size = 20) {
++  if (!Array.isArray(arr)) {
++    throw new TypeError(`Expected array, got ${typeof arr}`);
++  }
++  if (page < 1) {
++    throw new RangeError(`page must be >= 1, got ${page}`);
++  }
++  const start = (page - 1) * size;
++  return arr.slice(start, start + size);
++}
++
+ module.exports = {};
