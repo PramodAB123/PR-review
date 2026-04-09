@@ -1,0 +1,14 @@
+{
+  "name": "calculator-app",
+  "version": "1.0.0",
+  "description": "A sample calculator app with intentional vulnerabilities for PR review testing",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["calculator", "test", "vulnerable"],
+  "author": "Antigravity",
+  "license": "MIT"
+}
