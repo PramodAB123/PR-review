@@ -35,6 +35,13 @@ export function postReview(prNumber, reviewMarkdown, action) {
 
     } catch (err) {
         const stderr = err.stderr?.toString() || err.message;
+
+        // Fallback: If we can't request changes (e.g. self-review), try commenting instead
+        if (stderr.includes('Can not request changes on your own pull request') && action !== 'comment') {
+            console.warn(`  Warning: Cannot ${action} on your own PR. Falling back to --comment.`);
+            return postReview(prNumber, reviewMarkdown, 'comment');
+        }
+
         console.error('\nFailed to post review:');
         console.error(stderr);
 
@@ -42,8 +49,6 @@ export function postReview(prNumber, reviewMarkdown, action) {
         console.log('\n--- Review (save this manually) ---');
         console.log(reviewMarkdown);
         console.log('--- End ---');
-
-        process.exit(1);
 
     } finally {
         if (existsSync(tmpFile)) {
