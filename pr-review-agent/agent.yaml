@@ -2,24 +2,11 @@ spec_version: "0.1.0"
 name: pr-review-agent
 version: 1.0.0
 description: "AI code reviewer — catches security bugs, logic errors, and bad patterns in PRs automatically"
+author: PramodAB123
 model:
   preferred: claude-opus-4-6
-  fallback: llama-3.3-70b-versatile
+  fallback: 
+    - llama-3.3-70b-versatile
 skills:
   - review-diff
   - post-comment
-knowledge:
-  - security-patterns
-  - js-antipatterns
-adapters:
-  - claude-code
-  - openai
-  - groq
-  - system-prompt
-tags:
-  - hackathon
-  - developer-tools
-  - code-review
-  - security
-  - github-actions
-license: MIT

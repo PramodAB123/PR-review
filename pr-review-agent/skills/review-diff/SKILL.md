@@ -2,9 +2,6 @@
 name: review-diff
 description: "Analyzes a git diff and produces structured code review feedback"
 allowed-tools: Bash Read
-knowledge:
-  - security-patterns
-  - js-antipatterns
 ---
 
 # Review Diff
